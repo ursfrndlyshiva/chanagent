@@ -61,6 +61,7 @@ pycparser==2.22
 pydantic==2.10.6
 pydantic-settings==2.7.1
 pydantic_core==2.27.2
+pymssql==2.3.2
 PyMySQL==1.1.1
 pyparsing==3.2.1
 python-dotenv==1.0.1

@@ -1,4 +1,4 @@
-import pymysql
+import pymssql
 from dotenv import load_dotenv
 import os
 from langchain_community.utilities.sql_database import SQLDatabase
@@ -13,7 +13,7 @@ password = os.getenv('DB_PASSWORD')
 database = os.getenv('DB_DATABASE')
 
 
-connection = pymysql.connect(
+connection = pymssql.connect(
     host=host,
     user=user,
     password=password,
