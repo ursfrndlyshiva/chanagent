@@ -1,0 +1,10 @@
+langchain-google-genai 
+google-generativeai 
+python-dotenv 
+pymysql
+langchain==0.3.7 
+langchain_community==0.3.7  
+langsmith==0.1.142 
+pymysql==1.1.1 
+flask 
+flask-cors
