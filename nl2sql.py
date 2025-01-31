@@ -1,22 +1,16 @@
 from langchain.chains import create_sql_query_chain
 from clean import clean_sql_query
-from database import db,connection
+from database import connection
 from llm import llm
 import logging
 import pymysql
 
 
-def nlsql(query):
-    generate_query = create_sql_query_chain(llm, db)
-    query = generate_query.invoke({"question":query})
-    query=clean_sql_query(query)
-    return query
 
   
 
 def execute_sql(sql):
     try:
-        sql = nlsql(sql)  
         with connection.cursor() as cursor:
             cursor.execute(sql)
             results = cursor.fetchall()

@@ -21,5 +21,3 @@ connection = pymysql.connect(
 )
 
 
-
-db = SQLDatabase.from_uri(f"mysql+pymysql://{user}:{password}@{host}/{database}")
