@@ -1,12 +1,26 @@
 import logging
 import sqlite3
+from langchain_community.utilities.sql_database import SQLDatabase
+from llm import llm
+from langchain.chains import create_sql_query_chain
+from clean import clean_sql_query
 
-# Define the database path and establish a connection
-DB_PATH = "my_database.db"  # Replace with your database file path
-connection = sqlite3.connect(DB_PATH, check_same_thread=False)  # Creating SQLite connection
+
+
+DB_PATH = "my_database.db" 
+db = SQLDatabase.from_uri( f"sqlite:///{DB_PATH}") 
+
+connection = sqlite3.connect(DB_PATH, check_same_thread=False) 
+
+def nlsql(query):
+    generate_query = create_sql_query_chain(llm, db)
+    query = generate_query.invoke({"question": query})
+    query =clean_sql_query(query)
+    return query
 
 def execute_sql(sql):
     """Execute an SQL query and return results or an error message."""
+    sql=nlsql(sql)
     cursor = None  # Initialize cursor as None to prevent errors in the finally block
     try:
         with connection:  # Ensures automatic commit & rollback
