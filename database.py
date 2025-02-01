@@ -1,25 +1,7 @@
-import pymssql
-from dotenv import load_dotenv
-import os
-from langchain_community.utilities.sql_database import SQLDatabase
+import sqlite3
 
+# Define the database file
+DB_PATH = "my_database.db"
 
-load_dotenv()
-
-
-host = os.getenv('DB_HOST')
-user = os.getenv('DB_USER')
-password = os.getenv('DB_PASSWORD')
-database = os.getenv('DB_DATABASE')
-
-
-connection = pymssql.connect(
-    host=host,
-    user=user,
-    password=password,
-    database=database,
-    port = 3306
-)
-
-
-
+# Create a persistent connection
+connection = sqlite3.connect(DB_PATH, check_same_thread=False)  # Allows sharing connection across threads
