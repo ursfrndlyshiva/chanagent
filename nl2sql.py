@@ -27,12 +27,11 @@ def execute_sql(sql):
             cursor = connection.cursor()  # Create the cursor inside the context manager
             cursor.execute(sql)
             results = cursor.fetchall()
-            dict_results = [dict(zip(columns, result)) for result in results]
 
-            if not dict_results:
+            if not results:
                 return "No data available for this query."
 
-            return dict_results
+            return results
 
     except sqlite3.Error as e:  # Handle SQLite errors
         logging.error(f"SQL Error: {str(e)}")

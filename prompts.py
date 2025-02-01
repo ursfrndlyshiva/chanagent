@@ -16,5 +16,8 @@ prompt = PromptTemplate(
 
 summary_prompt = PromptTemplate(
         input_variables=["sql_result"],
-        template= """Summarize the following SQL query results:\n\n{sql_result}\n\nProvide key insights."""
+        template="""The following is the result of a SQL query execution:
+        {sql_result}
+        Please summarize this data in a concise, human-readable format with out about database:
+        """
     )
